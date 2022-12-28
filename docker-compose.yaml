@@ -1,7 +1,7 @@
 version: '3'
 services:
   my-app:
-    build: ./
+    build: ./app
     ports:
       - "3000:3000"
     depends_on:
@@ -26,6 +26,13 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
+
+  nginx:
+        restart: always
+        build:
+            context: ./nginx
+        ports:
+            - "80:80"
 
 volumes:
   mongo-data:
